@@ -390,7 +390,7 @@
     <div id="home" class="intro">
         <h1>Hello, I'm <span>Kayle.</span></h1>
         <p>
-        Currently pursuing a Mechanical Engineering Masters.
+        Currently pursuing a Master's Degree in Mechanical Engineering.
         </p>
         <a class="resume-button" href="Kayle_Megginson_Resume.pdf" download="Kayle_Megginson_Resume.pdf">Download Resume</a>
     </div>
@@ -400,7 +400,7 @@
             <img src="images/kayle_doing_a_thingy_I_think.png" alt="Personal Image" class="about-image">
             <h2>About Me</h2>
             <p>
-                Hello! My name is Kayle Megginson and I am a graduate student at Oregon State University with experience in AI, Machine Learning, and Data Visualization. I'm passionate about solving problems with technology, whether it's through building robust software applications or visualizing complex datasets.
+                Hello! My name is Kayle Megginson and I am a graduate student at Oregon State University with experience in AI, Machine Learning, Software Development, and Data Visualization. I'm passionate about solving problems with technology, whether it's through building robust software applications or visualizing complex datasets.
             </p>
         </div>
         <!-- Skills Section -->
@@ -507,7 +507,10 @@
             <div class="project-item">
                 <h3>Optimized Matrix Multiplication</h3>
                 <p>An optimized algorithm that makes matrix multiplication much quicker!</p>
-                <a href="projects/Optimized_Matrix_Multiplication.html">View Project</a>
+                <div style="display: flex; gap: 1rem;">
+                    <a href="projects/Optimized_Matrix_Multiplication.html">View Project</a>
+                    <a href="pdfs/CS_351_Presentation.pdf" target="_blank">View Presentation</a>
+                </div>
             </div>
             <div class="project-item">
                 <h3>Breakout</h3>
@@ -540,13 +543,40 @@
                 <p>A data analysis performed using R!</p>
                 <a href="Reports/Data501/index.html">View Report</a>
             </div>
+                <div class="project-item">
+                <h3>Structural Dynamics Presentation</h3>
+                <p>A presentation about the structural dynamics of Camp Randall Stadium at the University of Wisconsin</p>
+                <div style="display: flex; gap: 1rem;">
+                    <a href="pdfs/Kayle_Megginson_CE_534_Final_Presentation.pdf" target="_blank">View Report</a>
+                    <a href="https://youtu.be/zv-hGKXY3yA" target="_blank">Watch Presentation</a>
+                </div>
+            </div>
+                <div class="project-item">
+                <h3>Electrical Engineering Sub-Nyquist Sampling Research Paper</h3>
+                <p>A research paper about Sub-Nyquist Sampling and my results from implementing it</p>
+                <a href="pdfs/ECE_564_Paper.pdf" target="_blank">View Report</a>
+            </div>
+                <div class="project-item">
+                <h3>PageRank Research Paper</h3>
+                <p>A research paper about the linear algebra behind PageRank</p>
+                <a href="pdfs/ECE_580_Final_Project.pdf" target="_blank">View Report</a>
+            </div>
+                <div class="project-item">
+                <h3>Survival Analysis Presentations</h3>
+                <p>A collection of presentations from large-scale group projects in a graduate-level Survival Analysis course. Each group was provided with a large, real-world dataset and tasked with extracting meaningful insights despite having no prior background knowledge of the data or its context.</p>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <a href="pdfs/DATA596_SP25_PROJECT3_MEGGINSON-HAYMAN-HERNANDEZ.pdf" target="_blank">Vehicle Fuel Type and Longevity</a>
+                <a href="pdfs/DATA 596_SP25_PROJECT2_MEGGINSON_RODRIGUEZ_MIRANDA.pdf" target="_blank">Political Donations</a>
+                <a href="pdfs/SAGP1.pdf" target="_blank">Collegiate Faculty Retention</a>
+            </div>
+            </div>
         </div>
     </section>
 
     <section id="applied-mathematics" class="projects">
         <h2>Applied Mathematics</h2>
         <details>
-            <summary>Explore Projects</summary>
+            <summary style="cursor: pointer; padding: 1rem; background: rgba(240, 84, 84, 0.1); border: 2px solid #f05454; border-radius: 5px; font-size: 1.2rem; font-weight: bold; transition: all 0.3s;">Explore Projects</summary>
             <div class="project-list">
                 <div class="project-item">
                     <h3>Image Transformation Project</h3>
@@ -580,11 +610,11 @@
     <section id="supporting-work" class="projects">
         <h2>Foundational Programming Work</h2>
         <details>
-            <summary>Explore All Projects</summary>
+            <summary style="cursor: pointer; padding: 1rem; background: rgba(240, 84, 84, 0.1); border: 2px solid #f05454; border-radius: 5px; font-size: 1.2rem; font-weight: bold; transition: all 0.3s;">Explore All Projects</summary>
             
             <h3 style="color: #f05454; margin-top: 2rem;">Data Structures</h3>
             <details>
-                <summary>View Data Structures</summary>
+                <summary style="cursor: pointer; padding: 1rem; background: rgba(240, 84, 84, 0.1); border: 2px solid #f05454; border-radius: 5px; font-size: 1.1rem; font-weight: bold; transition: all 0.3s; margin: 1rem 0;">View Data Structures</summary>
                 <div class="project-list">
                     <div class="project-item">
                         <h3>Array</h3>
@@ -636,13 +666,13 @@
                         <p>Python implementation of a graph structure</p>
                         <a href="datastructures/graph.html">View Code</a>
                     </div>
-                </div>
-            </details>
 
-            <h3 style="color: #f05454; margin-top: 2rem;">Projects Using Data Structures</h3>
-            <details>
-                <summary>View Projects</summary>
-                <div class="project-list">
+                            </details>
+
+                            <h3 style="color: #f05454; margin-top: 2rem;">Projects Using Data Structures</h3>
+                            <details>
+                                <summary style="cursor: pointer; padding: 1rem; background: rgba(240, 84, 84, 0.1); border: 2px solid #f05454; border-radius: 5px; font-size: 1.1rem; font-weight: bold; transition: all 0.3s; margin: 1rem 0;">View Projects</summary>
+                                <div class="project-list">
                     <div class="project-item">
                         <h3>Game of Life</h3>
                         <p>A simple Python implementation of Conway's Game of Life, a cellular automaton devised by the British mathematician John Conway. This project applies my implementation of an Array 2D data structure</p>
@@ -674,7 +704,7 @@
                 <h3>Oregon State University</h3>
                 <p>Sept 2025 - June 2026 </p>
                 <p>
-                    <strong>Degree:</strong> MEng Mechanical Engineering Dynamics and Controls
+                    <strong>Degree:</strong> MEng Mechanical Engineering - Dynamics and Controls
                 </p>
             </div>
             
