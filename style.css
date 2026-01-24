@@ -700,3 +700,32 @@ header nav a:hover {
     border-radius: 10px; /* Optional: adds rounded corners */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: adds a subtle shadow */
 }
+
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+.modal-content {
+    position: relative;
+    margin: 5% auto;
+    padding: 1rem;
+    width: 80%;
+    max-width: 900px;
+    background: #000;
+    border-radius: 8px;
+}
+
+.close {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    color: #fff;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
