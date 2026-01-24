@@ -14,7 +14,6 @@
             box-sizing: border-box;
         }
 
-        
         body {
             font-family: 'Arial', sans-serif;
             color: white;
@@ -558,8 +557,7 @@
                 <p>A presentation about the structural dynamics of Camp Randall Stadium at the University of Wisconsin</p>
                 <div style="display: flex; gap: 1rem;">
                     <a href="pdfs/CE534.pdf" target="_blank">View Presentation Slides</a>
-                    <a href="#" id="openVideo">Watch Presentation</a>
-
+                    <a href="https://youtu.be/zv-hGKXY3yA" target="_blank">Watch Presentation</a>
                 </div>
             </div>
                 <div class="project-item">
@@ -852,54 +850,5 @@ Detection</a>
         });
     </script>
 </body>
-
-
-<script>
-const modal = document.getElementById("videoModal");
-const openBtn = document.getElementById("openVideo");
-const closeBtn = document.querySelector(".close");
-const iframe = document.getElementById("youtubeFrame");
-
-openBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    iframe.src = "https://www.youtube.com/embed/zv-hGKXY3yA?autoplay=1";
-    modal.style.display = "block";
-});
-
-closeBtn.addEventListener("click", () => {
-    modal.style.display = "none";
-    iframe.src = ""; // stop video playback
-});
-
-window.addEventListener("click", (e) => {
-    if (e.target === modal) {
-        modal.style.display = "none";
-        iframe.src = "";
-    }
-});
-</script>
-
-
-
-<!-- Youtube page overlay code -->
- <!-- Video Modal -->
-<div id="videoModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <iframe
-            id="youtubeFrame"
-            width="100%"
-            height="450"
-            src=""
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
-        </iframe>
-    </div>
-</div>
-
-
-
 
 </html>
