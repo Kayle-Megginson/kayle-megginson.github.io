@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Python Enigma Cipher</title>
+    <link rel="stylesheet" href="../subpage-theme.css">
     <script src="https://cdn.jsdelivr.net/pyodide/v0.21.3/full/pyodide.js"></script>
 </head>
-<body>
+<body data-page-type="simple" data-back-link="../index.html" data-page-title="Python Enigma Cipher" data-page-description="A lightweight browser experiment for running Python directly in the page with a cleaner portfolio presentation.">
     <h1>Run Python Code in Browser</h1>
     <textarea id="python-code" rows="5" cols="50">
 print("Hello from Pyodide!")
@@ -21,5 +22,6 @@ print("Hello from Pyodide!")
             document.getElementById("output").innerText = pyodide.runPython(code);
         }
     </script>
+    <script src="../subpage-theme.js"></script>
 </body>
 </html>

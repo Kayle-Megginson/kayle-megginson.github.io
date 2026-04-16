@@ -1,854 +1,415 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Kayle Megginson</title>
-    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
-    <style>
-        /* General Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            color: white;
-            scroll-behavior: smooth;
-            background-color: #000000;
-        }
-
-        /* Background Particles */
-        #particles-js {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: #000;
-        }
-
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
-        }
-
-        header .links {
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        header .links a {
-            text-decoration: none;
-            color: white;
-            font-size: 1rem;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            transition: color 0.3s;
-        }
-
-        header .links a:hover {
-            color: #f05454;
-        }
-
-        header nav {
-            display: flex;
-            gap: 2rem;
-        }
-
-        header nav a {
-            text-decoration: none;
-            color: white;
-            font-size: 1rem;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-
-        header nav a:hover {
-            color: #f05454;
-        }
-
-        /* Introduction Section */
-        .intro {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            text-align: center;
-            padding-top: 4rem;
-        }
-
-        .intro h1 {
-            font-size: 3rem;
-            color: white;
-            margin-bottom: 1rem;
-        }
-
-        .intro h1 span {
-            color: #f05454;
-        }
-
-        .intro p {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            color: white;
-        }
-
-        .resume-button {
-            text-decoration: none;
-            color: white;
-            border: 2px solid #f05454;
-            padding: 0.7rem 1.5rem;
-            border-radius: 5px;
-            font-size: 1rem;
-            font-weight: bold;
-            transition: all 0.3s;
-        }
-
-        .resume-button:hover {
-            background: #f05454;
-            color: white;
-        }
-
-        /* About Section */            
-        .about-skills {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-            padding: 4rem 2rem;
-            background-color: #111;
-        }
-        .about {
-            width: 40%; /* Initial width for larger screens */
-            text-align: center; /* Center-align content */
-        }
-
-        .about-image {
-            width: 300px; /* Set a uniform width for all logos */
-            height: auto; /* Set a uniform height for all logos */
-            margin-bottom: 24px; /* Add spacing between the logo and text */    
-        }
-        .about h2 {
-            font-size: 2.5rem;
-            color: #f05454;
-            margin-bottom: 1.5rem;
-            text-align: center; /* Center-align the title */
-
-        }
-
-        .about p {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            max-width: 800px;
-            color: #ddd;
-        }
-
-        /* Skills Section */
-            .skills {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Adjust columns dynamically */
-                gap: 5px; /* Add space between grid items */
-                width: 35%; /* Maintain section width */
-                margin: 0 auto; /* Horizontally center the grid */
-                justify-content: center; /* Ensure the grid is centered */
-                align-items: center; /* Center items vertically */
-                padding: 1.5rem; /* Optional: Add some padding */
-            }
-
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .about-skills {
-                flex-direction: column; /* Stack sections vertically */
-                align-items: center; /* Center content */
-                gap: 2rem; /* Add spacing between sections */
-            }
-        }
-        .skills:nth-child(2) {
-            grid-template-columns: repeat(4, 1fr); /* Second row: 4 columns */
-        }
-        
-        .skill {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 100px; /* Fixed width for square boxes */
-            height: 100px; /* Fixed height for square boxes */
-            border: 2px solid red; /* Red outline for boxes */
-            border-radius: 10px; /* Rounded corners */
-            background: transparent; /* Transparent background */
-            text-align: center;
-            font-size: 1rem; /* Text size for empty boxes */
-            color: white; /* Optional text color if needed */
-            transition: transform 0.3s ease; /* Optional hover effect */
-        }
-        .skill img {
-            width: 80%; /* Set a fixed width for the images */
-            height: auto; /* Maintain aspect ratio */
-            max-height: 50px; /* Ensure the height doesn’t exceed the box height */
-            object-fit: contain; /* Ensure the image fits within the box */
-            margin: 0; /* Remove extra margin around images */
-        }
-
-        .skill:hover {
-            transform: translateY(-5px); /* Subtle lift on hover */
-        }
-        
-        .skill p {
-            margin: 0; /* Remove margin for empty boxes */
-        }
-
-   
-
-        /* Projects Section */
-        .projects {
-            padding: 4rem 2rem;
-            background: #111;
-        }
-
-        .projects h2 {
-            font-size: 2.5rem;
-            color: #f05454;
-            margin-bottom: 2rem;
-        }
-
-        .project-list {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: left;
-        }
-
-        .project-item {
-            margin-bottom: 2rem;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .project-item h3 {
-            margin: 0;
-            font-size: 1.5rem;
-            color: white;
-        }
-
-        .project-item p {
-            margin: 0.5rem 0;
-            line-height: 1.5;
-        }
-        .project-logo {
-            width: 30px; /* Set a uniform width for all logos */
-            height: 30px; /* Set a uniform height for all logos */
-            margin-right: 10px; /* Add spacing between the logo and text */
-            vertical-align: middle; /* Align the logo with the text */
-        }
-
-        .project-item a {
-            text-decoration: none;
-            color: #f05454;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-
-        .project-item a:hover {
-            color: #fff;
-        }
-        /* Experience Section */
-        .experience {
-            padding: 4rem 2rem;
-            background: #111;
-        }
-
-        .experience h2 {
-            font-size: 2.5rem;
-            color: #f05454;
-            margin-bottom: 2rem;
-        }
-
-        .experience-list {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: left;
-        }
-
-        .experience-item {
-            margin-bottom: 2rem;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .experience-item h3 {
-            margin: 0;
-            font-size: 1.5rem;
-            color: white;
-        }
-
-        .experience-item p {
-            margin: 0.5rem 0;
-            line-height: 1.5;
-        }
-        /* Education Section */
-        .education {
-            padding: 4rem 2rem;
-            background: #111;
-        }
-
-        .education h2 {
-            font-size: 2.5rem;
-            color: #f05454;
-            margin-bottom: 2rem;
-        }
-
-        .education-list {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: left;
-        }
-
-        .education-item {
-            margin-bottom: 2rem;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .education-item h3 {
-            margin: 0;
-            font-size: 1.5rem;
-            color: white;
-        }
-
-        .education-item p {
-            margin: 0.5rem 0;
-            line-height: 1.5;
-            color: white;
-        }
-        .education-image {
-            display: block;
-            margin: 0 auto 1rem auto; /* Centers the image and adds space below */
-            width: 100%;
-            max-width: 300px; /* Adjust this value as needed */
-            height: auto;
-            border-radius: 10px; /* Optional: adds rounded corners */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: adds a subtle shadow */
-        }
-
-
-
-    </style>
+    <meta name="description" content="Portfolio of Kayle Megginson, a graduate engineer and software-focused builder working across mechanical engineering, computer science, and data science.">
+    <title>Kayle Megginson | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <!-- Particle.js container -->
-    <div id="particles-js"></div>
+    <div class="page-backdrop" aria-hidden="true">
+        <div class="aurora aurora-one"></div>
+        <div class="aurora aurora-two"></div>
+        <div class="grid-glow"></div>
+    </div>
 
-    <!-- TODO Potentially change all images to an image folder-->
+    <header class="site-header">
+        <a class="brand" href="#home">
+            <span class="brand-mark">KM</span>
+            <span class="brand-text">Kayle Megginson</span>
+        </a>
 
-    <!-- Header -->
-    <header>
-        <div class="links">
-            <a href="https://github.com/RealSaltKing/kayle-megginson.github.io" target="_blank">
-                <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub" width="20">
-                GitHub
-            </a>
-            <a href="https://www.linkedin.com/in/kayle-megginson-9868872b5/" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" width="20">
-                LinkedIn
-            </a>
-            <a href="Kayle_Megginson_Resume.pdf" download="Kayle_Megginson_Resume.pdf">Resume</a>
-        </div>
-        <nav>
-            <a href="#home">Home</a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav class="site-nav" aria-label="Primary">
             <a href="#about">About</a>
-            <a href="#experience">Experience</a>
+            <a href="#experience">Work</a>
             <a href="#projects">Projects</a>
+            <a href="#reports">Research</a>
             <a href="#education">Education</a>
+            <a href="#contact">Contact</a>
         </nav>
-        <div class="menu-icon" onclick="toggleMenu()">☰</div>
+
+        <div class="header-actions">
+            <a class="pill-link" href="Kayle_Megginson_Resume.pdf" download="Kayle_Megginson_Resume.pdf">Resume</a>
+            <a class="pill-link pill-link-muted" href="https://www.linkedin.com/in/kayle-megginson-9868872b5/" target="_blank" rel="noreferrer">LinkedIn</a>
+        </div>
     </header>
-    
 
-    <!-- Introduction Section -->
-    <div id="home" class="intro">
-        <h1>Hello, I'm <span>Kayle.</span></h1>
-        <p>
-        Currently pursuing a Master's Degree in Mechanical Engineering.
-        </p>
-        <a class="resume-button" href="Kayle_Megginson_Resume.pdf" download="Kayle_Megginson_Resume.pdf">Download Resume</a>
-    </div>
-    <div id="about" class="about-skills">
-        <!-- About Section -->
-        <div class="about">
-            <img src="images/kayle_doing_a_thingy_I_think.png" alt="Personal Image" class="about-image">
-            <h2>About Me</h2>
-            <p>
-                Hello! I’m Kayle Megginson, a graduate student at Oregon State University with interdisciplinary training in Mechanical Engineering, Computer Science, and Data Science. I focus on building software systems, data driven models, and engineering optimization solutions, with experience in Python, MATLAB, C, JavaScript, SQL, and R. I am passionate about solving real world problems with technology, whether that means developing robust software, analyzing complex datasets, or applying machine learning and control theory. I enjoy working in collaborative technical environments and turning complex ideas into practical solutions.
-            </p>
-        </div>
-        <!-- Skills Section -->
-        <div class="skills">
-            <div class="skill">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" alt="Python">
-            </div>
-            <div class="skill">
-                <img src="images/R_logo.png" alt="R Logo">
-            </div>
-            <div class="skill">
-                <img src="images/SQL_DB_logo.png" alt="SQL Logo">
-            </div>
-            <div class="skill">
-                <img src="images/C_Logo.png" alt="C Logo">
-            </div>
-            <div class="skill">
-                <img src="images/reactjs_logo.png" alt="React Logo">
-            </div>
-            <div class="skill">
-                <img src="images/Git_logo.png" alt="Git Logo">
-            </div>
-            <div class="skill">
-                <img src="images/pngwing.com.png" alt="Jira Logo">
-            </div>
-            <div class="skill">
-                <img src="images/js.png" alt="Skill 12">
-            </div>
-            <div class="skill">
-                <img src="images/Confluence_Logo.png" alt="Confluence Logo">
-            </div>
-            <div class="skill">
-                <img src="images/powerpoint.png" alt="PowerPoint Logo">
-            </div>
-            <div class="skill">
-                <img src="images/Excel-Logo.png" alt="Excel Logo">
-            </div>
-            <div class="skill">
-                <img src="images\azure-logo-white-circle-1.png" alt="Skill 11">
-            </div>
-    </div>
-    
-</div>
-<!-- Skills Section --<section id = "experience" class="experience">
-    <h2>Experience</h2>
-    <div class="experience-list">
-        <div class="experience-item">
-            <h3>Project Manager</h3>
-            <p>Willamette University Athletics | May 2024 - Present</p>
-            <p>
-                Spearheaded defensive strategy analysis using HUDL, collaborating with coaches to align performance metrics with team objectives and effectively communicate actionable strategies to players.
-            </p>
-            <p>
-                Designed and developed user-friendly visualizations of key performance metrics (e.g., pass pressures, coverages) on a web-based platform to support data-driven decision-making and enhance defensive tactics.
-            </p>
-            <p>
-                Built and standardized a data pipeline to streamline metric analysis, improve data accuracy, and support ongoing strategy development.
-            </p>
-            <p>
-                Managed team workflows and resources efficiently, resolving roadblocks and ensuring seamless collaboration to achieve strategic objectives.
-            </p>
-        </div>
-
-        <div class="experience-item">
-            <h3>AI/ML Intern</h3>
-            <p>Bahwan Cybertek | Jun 2023 - Aug 2023</p>
-            <p>
-                Lowered operating costs by creating a custom keyword extractor in Python using natural language processing techniques for feedback management systems.
-            </p>
-            <p>
-                Validated research with F-scores and optimized the keyword extraction algorithm for enhanced accuracy and performance.
-            </p>
-            <p>
-                Documented research findings, methodologies, and recommendations to facilitate knowledge sharing and future improvements.
-            </p>
-        </div>
-    </div>
-
-    <!-- New Other Experience Section --
-    <h2>Other Experience</h2>
-    <div class="experience-list">
-        <div class="experience-item">
-            <h3>Statistics and Data Structures Teacher’s Assistant, CS/DS Peer Tutor</h3>
-            <p>Willamette University | May 2024 - Present</p>
-            <p>
-                Provided academic support to undergraduate students, simplifying complex concepts in statistics, computer science, and data science.
-            </p>
-            <p>
-                Effectively identified and addressed student challenges to foster understanding.
-            </p>
-        </div>
-    </div>
-</section> 
-
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <h2>Projects</h2>
-        <div class="project-list">
-            <div class="project-item">
-                <h3>Cloud-Based Financial Tracking App</h3>
-                <p>An overview of a Cloud Application I made as my final capstone project for my graduate cloud application development class!</p>
-                <a href="projects/cloudapp.html">View Project</a>
-            </div>
-            <div class="project-item">
-                <h3>Optimized Matrix Multiplication</h3>
-                <p>An optimized algorithm that makes matrix multiplication much quicker!</p>
-                <div style="display: flex; gap: 1rem;">
-                    <a href="projects/Optimized_Matrix_Multiplication.html">View Project</a>
-                    <a href="pdfs/CS_351_Project_Presentation_Slides.pdf" target="_blank">View Presentation</a>
-                </div>
-            </div>
-            <div class="project-item">
-                <h3>Survival Analysis Studies</h3>
-                <p>A collection of presentations from large-scale group projects in a graduate-level Survival Analysis course. Each group was provided with a large, real-world dataset and tasked with extracting meaningful insights despite having no prior background knowledge of the data or its context.</p>
-                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                    <a href="pdfs/DATA596_SP25_PROJECT3_MEGGINSON-HAYMAN-HERNANDEZ.pdf" target="_blank">Vehicle Fuel Type and Longevity</a>
-                    <a href="pdfs/DATA 596_SP25_PROJECT2_MEGGINSON_RODRIGUEZ_MIRANDA.pdf" target="_blank">Political Donations</a>
-                    <a href="pdfs/SAGP1.pdf" target="_blank">Collegiate Faculty Retention</a>
-                </div>
-            </div>
-            <div class="project-item">
-                <h3>Breakout</h3>
-                <p>An implementation of a fun arcade classic!</p>
-                <a href="projects/breakout/index.html">Play Breakout</a>
-            </div>
-            <div class="project-item">
-                <h3>Wordle</h3>
-                <p>A replica of the popular Wordle game!</p>
-                <a href="projects/wordle/index.html">Play Wordle</a>
-            </div>
-            <div class="project-item">
-                <h3>Dijkstra's Shortest Path Algorithm</h3>
-                <p>A Python Implementation of Dijkstra's Shortest Path Algorithm! This algorithm can be used for things like finding the shortest flight from airport to airport or the shortest drive from your house to work.</p>
-                <a href="projects/dijkstra.html">View Project</a>
-            </div>
-        </div>
-    </section>
-
-    <section id="reports" class="projects">
-        <h2>Reports</h2>
-        <div class="project-list">
-            <div class="project-item">
-                <h3>Graduate Research</h3>
-                <p>Official research I conducted in my graduate studies and submitted to the SIGCITE. This research included a data analysis performed using R!</p>
-                <a href="pdfs/SIGCITE25_Pedalogical_Submitted.pdf" target="_blank">View Research Paper</a>
-            </div>
-                <div class="project-item">
-                <h3>Data Science Project - Kickstarter Success Factors Analysis</h3>
-                <p>This project analyzes Kickstarter campaigns from 2009 to 2020 to identify trends in campaign distribution, success rates, and key factors influencing funding outcomes. Using statistical tests and regression analysis, it highlights how project category and backer count strongly relate to campaign success and total funds pledged.</p>
-                <a href="Reports/Data501/index.html">View Report</a>
-            </div>
-                <div class="project-item">
-                <h3>Structural Dynamics Presentation</h3>
-                <p>A presentation about the structural dynamics of Camp Randall Stadium at the University of Wisconsin</p>
-                <div style="display: flex; gap: 1rem;">
-                    <a href="pdfs/CE534.pdf" target="_blank">View Presentation Slides</a>
-                    <a href="https://youtu.be/zv-hGKXY3yA" target="_blank">Watch Presentation</a>
-                </div>
-            </div>
-                <div class="project-item">
-                <h3>Electrical Engineering Sub-Nyquist Sampling Research Paper</h3>
-                <p>A research paper about Sub-Nyquist Sampling and my results from implementing it</p>
-                <a href="pdfs/ECE_564_Paper.pdf" target="_blank">View Paper</a>
-            </div>
-                <div class="project-item">
-                <h3>PageRank Research Paper</h3>
-                <p>A research paper about the linear algebra behind PageRank</p>
-                <a href="pdfs/ECE_580_Final_Project.pdf" target="_blank">View Paper</a>
-            </div>
-                <div class="project-item">
-                <h3>Digital Signal Processing Projects</h3>
-                <p>A collection of projects from a graduate level digital signal processing course. The goal of these projects was to successfully implement a Quadrature Phase-Shift Keying
-(QPSK) communication system.</p>
-            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                <a href="pdfs/ECE_564_Project_1_.pdf" target="_blank">Transmitter Simulation</a>
-                <a href="pdfs/ECE_564_Project_2.pdf" target="_blank">Receiver Simulation</a>
-                <a href="pdfs/ECE_564_Project_3-1.pdf" target="_blank">Receiver Filtering, Demodulation, and Symbol
-Detection</a>
-            </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="applied-mathematics" class="projects">
-        <h2>Applied Mathematics</h2>
-        <details>
-            <summary style="cursor: pointer; padding: 1rem; background: rgba(240, 84, 84, 0.1); border: 2px solid #f05454; border-radius: 5px; font-size: 1.2rem; font-weight: bold; transition: all 0.3s;">Explore Projects</summary>
-            <div class="project-list">
-                <div class="project-item">
-                    <h3>Image Transformation Project</h3>
-                    <p>Transforming images using the power of Linear Algebra and Python!</p>
-                    <a href="math/image_transformation/index.html">View Project</a>
-                </div>
-                <div class="project-item">
-                    <h3>Image Compression using SVD</h3>
-                    <p>Using the power of Python and Singular Value Decomposition, this project aims to offer a way to compress image files, while still preserving the quality of the original image</p>
-                    <a href="math/SVD/index.html">View Project</a>
-                </div>
-                <div class="project-item">
-                    <h3>Predictive Test Generator</h3>
-                    <p>A program that reads in text from a file and uses transition matrices to make a model that predicts the most likely word to follow a specified word</p>
-                    <a href="math/predictive/index.html">View Project</a>
-                </div>
-                <div class="project-item">
-                    <h3>Cubic Spline</h3>
-                    <p>A program that finds a cubic spline through any four points in a plane!</p>
-                    <a href="math/cubic/index.html">View Project</a>
-                </div>
-                <div class="project-item">
-                    <h3>Error Correcting Code</h3>
-                    <p>Ever wonder how a disc can still be read by a laser even with many scratches? Error correcting code is the benchmark of what makes this possible. This program shows the idea of what goes on under the hood mathematically of this approach</p>
-                    <a href="math/hamming/index.html">View Project</a>
-                </div>
-            </div>
-        </details>
-    </section>
-
-    <section id="supporting-work" class="projects">
-        <h2>Foundational Programming Work</h2>
-        <details>
-            <summary style="cursor: pointer; padding: 1rem; background: rgba(240, 84, 84, 0.1); border: 2px solid #f05454; border-radius: 5px; font-size: 1.2rem; font-weight: bold; transition: all 0.3s;">Explore All Projects</summary>
-            
-            <h3 style="color: #f05454; margin-top: 2rem;">Data Structures</h3>
-            <details>
-                <summary style="cursor: pointer; padding: 1rem; background: rgba(240, 84, 84, 0.1); border: 2px solid #f05454; border-radius: 5px; font-size: 1.1rem; font-weight: bold; transition: all 0.3s; margin: 1rem 0;">View Data Structures</summary>
-                <div class="project-list">
-                    <div class="project-item">
-                        <h3>Array</h3>
-                        <p>Python implementation of an array data structure</p>
-                        <a href="datastructures/Array.html">View Code</a>
-                    </div>
-                    <div class="project-item">
-                        <h3>Array 2D</h3>
-                        <p>Python implementation of an array 2D data structure</p>
-                        <a href="datastructures/Array2D.html">View Code</a>
-                    </div>
-                    <div class="project-item">
-                        <h3>Linked List</h3>
-                        <p>Python implementation of a linked list</p>
-                        <a href="datastructures/linkedlist.html">View Code</a>
-                        <p>Supporting code for linked list data structure to handle nodes</p>
-                        <a href="datastructures/listnode.html">View Code</a>
-                    </div>
-                    <div class="project-item">
-                        <h3>Hash Table</h3>
-                        <p>Python implementation of a hash table data structure</p>
-                        <a href="datastructures/hashmap.html">View Code</a>
-                    </div>
-                    <div class="project-item">
-                        <h3>Binary Search Tree and Interval Tree</h3>
-                        <p>Python implementation of a binary search tree</p>
-                        <a href="datastructures/AVLTree.html">View Code</a>
-                        <p>Supporting code for AVL Tree</p>
-                        <a href="datastructures/iAVLTree.html">View Code</a>
-                        <p>Python implementation of an Interval Tree data structure</p>
-                        <a href="datastructures/intervaltree.html">View Code</a>
-                    </div>
-                    <div class="project-item">
-                        <h3>Queue</h3>
-                        <p>Python implementation of a queue using a 1D array</p>
-                        <a href="datastructures/arrayqueue.html">View Code</a>
-                        <p>Python implementation of a queue data structure using a linked list</p>
-                        <a href="datastructures/listqueue.html">View Code</a>
-                    </div>
-                    <div class="project-item">
-                        <h3>Stack</h3>
-                        <p>Python implementation of a stack data structure using a 1D array</p>
-                        <a href="datastructures/stackarray.html">View Code</a>
-                        <p>Python implementation of a stack data structure using a linked list</p>
-                        <a href="datastructures/stacklist.html">View Code</a>
-                    </div>
-                    <div class="project-item">
-                        <h3>Graph</h3>
-                        <p>Python implementation of a graph structure</p>
-                        <a href="datastructures/graph.html">View Code</a>
-                    </div>
-
-                            </details>
-
-                            <h3 style="color: #f05454; margin-top: 2rem;">Projects Using Data Structures</h3>
-                            <details>
-                                <summary style="cursor: pointer; padding: 1rem; background: rgba(240, 84, 84, 0.1); border: 2px solid #f05454; border-radius: 5px; font-size: 1.1rem; font-weight: bold; transition: all 0.3s; margin: 1rem 0;">View Projects</summary>
-                                <div class="project-list">
-                    <div class="project-item">
-                        <h3>Game of Life</h3>
-                        <p>A simple Python implementation of Conway's Game of Life, a cellular automaton devised by the British mathematician John Conway. This project applies my implementation of an Array 2D data structure</p>
-                        <a href="supportprojects/gameoflife.html">View Project</a>
-                    </div>
-                    <div class="project-item">
-                        <h3>Lyrics Compressor</h3>
-                        <p>This Python program compresses lyrics by mapping each unique word to its positions within the text. This approach efficiently manages song lyrics or any textual content with repeated words.</p>
-                        <a href="supportprojects/lyricscompressor.html">View Project</a>
-                    </div>
-                    <div class="project-item">
-                        <h3>Evolution of Dance</h3>
-                        <p>This program simulates a dance-off where dancers perform various dance moves randomly. Its a fun little project that applies a linked list data structure</p>
-                        <a href="supportprojects/evolutionofdance.html">View Code</a>
-                    </div>
-                    <div class="project-item">
-                        <h3>Data Structures Final Exam</h3>
-                        <p>This project was a timed 3 hour exam where I was tasked to make an implementation of a catalog music service using data structures! I completed this exam project in 2 hours and 4 minutes</p>
-                        <a href="supportprojects/finalexam.html">View Code</a>
-                    </div>
-                </div>
-            </details>
-        </details>
-    </section>
-    <section id = "education" class="education">
-        <h2>Education</h2>
-        <div class="education-list">
-            <div class="education-item">
-                <h3>Oregon State University</h3>
-                <p>Sept 2025 - June 2026 </p>
-                <p>
-                    <strong>Degree:</strong> MEng Mechanical Engineering - Dynamics and Controls
+    <main>
+        <section id="home" class="hero section">
+            <div class="hero-copy reveal">
+                <p class="eyebrow">Graduate Engineer | Software Builder | Data-Driven Problem Solver</p>
+                <h1>Designing thoughtful systems at the intersection of engineering, software, and analytics.</h1>
+                <p class="hero-lead">
+                    I am Kayle Megginson, a graduate student at Oregon State University building software systems,
+                    data-informed models, and optimization-focused solutions that turn complex technical problems into practical outcomes.
                 </p>
+                <div class="hero-rotator">
+                    <span class="hero-rotator-label">Focused on</span>
+                    <span id="role-rotator" class="hero-rotator-value">full-stack projects</span>
+                </div>
+                <div class="hero-actions">
+                    <a class="btn btn-primary" href="#projects">Explore My Work</a>
+                    <a class="btn btn-secondary" href="Kayle_Megginson_Resume.pdf" download="Kayle_Megginson_Resume.pdf">Download Resume</a>
+                    <a class="btn btn-ghost" href="#contact">Let's Connect</a>
+                </div>
+                <div class="hero-metrics">
+                    <article class="metric-card reveal">
+                        <strong>3</strong>
+                        <span>Degree paths spanning mechanical engineering, computer science, and data science.</span>
+                    </article>
+                    <article class="metric-card reveal">
+                        <strong>10+</strong>
+                        <span>Portfolio projects across software, analytics, algorithms, and interactive apps.</span>
+                    </article>
+                    <article class="metric-card reveal">
+                        <strong>6+</strong>
+                        <span>Core tools used regularly, including Python, MATLAB, SQL, JavaScript, and R.</span>
+                    </article>
+                </div>
             </div>
-            
-            <div class="education-item">
-                <h3>Willamette University</h3>
-                <p>Aug 2023 - Aug 2025</p>
-                <p>
-                    <strong>Degrees:</strong> M.S. Computer Science | B.S. Computer Science | B.S. Data Science | Minor in Applied Mathematics
-                </p>
-                <p>
-                    <strong>Activities:</strong> Mathematics Tutor
-                </p>
-                
-            </div>        
-            <img src="images/prom.jpg" alt="Willamette Grad Photo" class="education-image">
 
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="projects">
-        <h2>Contact</h2>
-        
-        <div class="project-list" style="max-width: 600px;">
-            <p style="text-align: center; margin-bottom: 2rem;">Have a question or want to work together? Leave your details and I'll get back to you as soon as possible!</p>
-            
-            <form id="contact-form" action="https://formspree.io/f/myzedwrd" method="POST" style="display: flex; flex-direction: column; gap: 1rem;">
-                <div class="form-group">
-                    <input type="text" id="name" name="name" placeholder="Name" required style="width: 100%; padding: 0.8rem; border: 2px solid #f05454; background: transparent; color: white; border-radius: 5px; font-size: 1rem;">
+            <div class="hero-visual reveal">
+                <div class="portrait-shell">
+                    <div class="portrait-rings" aria-hidden="true"></div>
+                    <img src="images/kayle_doing_a_thingy_I_think.png" alt="Portrait of Kayle Megginson" class="portrait-image">
                 </div>
-                
-                <div class="form-group">
-                    <input type="email" id="email" name="email" placeholder="Email" required style="width: 100%; padding: 0.8rem; border: 2px solid #f05454; background: transparent; color: white; border-radius: 5px; font-size: 1rem;">
+                <div class="hero-spotlight-card glass-card">
+                    <p class="spotlight-label">Current direction</p>
+                    <h2>Mechanical engineering + software + machine learning</h2>
+                    <p>
+                        Actively seeking opportunities to apply my full range of skills—engineering, software development, and data science—in roles where I can solve meaningful problems and make a real impact.
+                    </p>
                 </div>
-                
-                <div class="form-group">
-                    <textarea id="message" name="message" placeholder="Message" rows="5" required style="width: 100%; padding: 0.8rem; border: 2px solid #f05454; background: transparent; color: white; border-radius: 5px; font-size: 1rem; resize: vertical;"></textarea>
+            </div>
+        </section>
+
+        <section id="about" class="section reveal">
+            <div class="section-heading">
+                <p class="eyebrow">About</p>
+                <h2>Technical range with a builder's mindset</h2>
+            </div>
+            <div class="about-layout glass-card">
+                <div class="about-copy">
+                    <p>
+                        My background combines graduate work in mechanical engineering with formal training in computer science,
+                        data science, and applied mathematics. That mix lets me move comfortably between code, models, systems,
+                        and engineering analysis.
+                    </p>
+                    <p>
+                        I enjoy projects where structure matters: designing robust software, analyzing difficult datasets,
+                        improving algorithms, and creating interfaces that make technical work easier to understand and use.
+                    </p>
+                    <div class="skills-grid">
+                        <span>Python</span>
+                        <span>MATLAB</span>
+                        <span>C</span>
+                        <span>JavaScript</span>
+                        <span>SQL</span>
+                        <span>R</span>
+                        <span>React</span>
+                        <span>Git</span>
+                        <span>Azure</span>
+                        <span>Data Visualization</span>
+                        <span>Optimization</span>
+                        <span>Machine Learning</span>
+                    </div>
                 </div>
-                
-                <div id="form-status" style="text-align: center; margin: 0.5rem 0; color: #f05454;"></div>
-                
-                <button type="submit" class="resume-button" style="align-self: center; cursor: pointer; color: black;">SUBMIT</button>
-            </form>
-        </div>
-    </section>
+                <div class="logo-cloud">
+                    <div class="logo-tile"><img src="images/python_logo.png" alt="Python logo"></div>
+                    <div class="logo-tile"><img src="images/R_logo.png" alt="R logo"></div>
+                    <div class="logo-tile"><img src="images/SQL_DB_logo.png" alt="SQL logo"></div>
+                    <div class="logo-tile"><img src="images/C_Logo.png" alt="C logo"></div>
+                    <div class="logo-tile"><img src="images/reactjs_logo.png" alt="React logo"></div>
+                    <div class="logo-tile"><img src="images/Git_logo.png" alt="Git logo"></div>
+                    <div class="logo-tile"><img src="images/Jira_Logo.png" alt="Jira logo"></div>
+                    <div class="logo-tile"><img src="images/js.png" alt="JavaScript logo"></div>
+                    <div class="logo-tile"><img src="images/Confluence_Logo.png" alt="Confluence logo"></div>
+                    <div class="logo-tile"><img src="images/Excel-Logo.png" alt="Excel logo"></div>
+                    <div class="logo-tile"><img src="images/powerpoint.png" alt="PowerPoint logo"></div>
+                    <div class="logo-tile"><img src="images/azure-logo-white-circle-1.png" alt="Azure logo"></div>
+                </div>
+            </div>
+        </section>
 
+        <section id="experience" class="section reveal">
+            <div class="section-heading">
+                <p class="eyebrow">Work</p>
+                <h2>Hands-on experience in service, operations, and mechanical problem-solving</h2>
+            </div>
+            <div class="timeline">
+                <article class="timeline-item glass-card">
+                    <div class="timeline-meta">
+                        <h3>Wedding Server</h3>
+                        <p>Black Butte Ranch, Sisters, OR | May 2025 - Present</p>
+                    </div>
+                    <ul>
+                        <li>Coordinated event setups for up to 210 guests while optimizing layout for efficiency and flow.</li>
+                        <li>Managed 3 to 5 service stations while maintaining inventory and service quality.</li>
+                        <li>Streamlined cleanup workflow, reducing setup time by 20%.</li>
+                    </ul>
+                </article>
 
+                <article class="timeline-item glass-card">
+                    <div class="timeline-meta">
+                        <h3>Mechanic</h3>
+                        <p>Santiam Jr/Sr High School, Mill City, OR | Sep 2021 - Jun 2022</p>
+                    </div>
+                    <ul>
+                        <li>Diagnosed issues in 10 or more donated vehicles using structured troubleshooting methods.</li>
+                        <li>Repaired mechanical and electrical systems, increasing salvage value by an estimated 40%.</li>
+                        <li>Managed $4,000 in parts inventory and shipment tracking.</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
 
-    <script>
-        /* Initialize Particle.js */
-        particlesJS('particles-js', {
-            particles: {
-                number: {
-                    value: 80,
-                    density: {
-                        enable: true,
-                        value_area: 800
-                    }
-                },
-                color: {
-                    value: "#ffffff"
-                },
-                shape: {
-                    type: "circle",
-                    stroke: {
-                        width: 0,
-                        color: "#000000"
-                    },
-                },
-                opacity: {
-                    value: 0.5,
-                    random: false,
-                    anim: {
-                        enable: false,
-                        speed: 1,
-                        opacity_min: 0.1,
-                        sync: false
-                    }
-                },
-                size: {
-                    value: 3,
-                    random: true,
-                    anim: {
-                        enable: false,
-                        speed: 40,
-                        size_min: 0.1,
-                        sync: false
-                    }
-                },
-                line_linked: {
-                    enable: true,
-                    distance: 150,
-                    color: "#ffffff",
-                    opacity: 0.4,
-                    width: 1
-                },
-                move: {
-                    enable: true,
-                    speed: 6,
-                    direction: "none",
-                    random: false,
-                    straight: false,
-                    out_mode: "out",
-                    attract: {
-                        enable: false,
-                        rotateX: 600,
-                        rotateY: 1200
-                    }
-                }
-            },
-            interactivity: {
-                detect_on: "canvas",
-                events: {
-                    onhover: {
-                        enable: true,
-                        mode: "repulse"
-                    },
-                    onclick: {
-                        enable: true,
-                        mode: "push"
-                    },
-                    resize: true
-                },
-                modes: {
-                    repulse: {
-                        distance: 200,
-                        duration: 0.4
-                    },
-                }
-            },
-            retina_detect: true
-        });
-    </script>
+        <section id="projects" class="section reveal">
+            <div class="section-heading">
+                <p class="eyebrow">Featured Work</p>
+                <h2>Projects that show how I think, build, and iterate</h2>
+            </div>
+            <div class="card-grid">
+                <article class="project-card glass-card">
+                    <p class="card-kicker">Cloud Development</p>
+                    <h3>Cloud-Based Financial Tracking App</h3>
+                    <p>A capstone cloud application designed to show architecture, usability, and real deployment thinking.</p>
+                    <a href="projects/cloudapp.html">View Project</a>
+                </article>
+                <article class="project-card glass-card">
+                    <p class="card-kicker">Algorithms</p>
+                    <h3>Optimized Matrix Multiplication</h3>
+                    <p>An algorithm-focused project centered on making matrix multiplication substantially faster and more efficient.</p>
+                    <div class="card-links">
+                        <a href="projects/Optimized_Matrix_Multiplication.html">View Project</a>
+                        <a href="pdfs/CS_351_Project_Presentation_Slides.pdf" target="_blank" rel="noreferrer">Presentation</a>
+                    </div>
+                </article>
+                <article class="project-card glass-card">
+                    <p class="card-kicker">Data Science</p>
+                    <h3>Survival Analysis Studies</h3>
+                    <p>Graduate group work extracting meaningful insights from large real-world datasets with limited domain context.</p>
+                    <div class="card-links">
+                        <a href="pdfs/DATA596_SP25_PROJECT3_MEGGINSON-HAYMAN-HERNANDEZ.pdf" target="_blank" rel="noreferrer">Vehicle Fuel Type</a>
+                        <a href="pdfs/DATA 596_SP25_PROJECT2_MEGGINSON_RODRIGUEZ_MIRANDA.pdf" target="_blank" rel="noreferrer">Political Donations</a>
+                        <a href="pdfs/SAGP1.pdf" target="_blank" rel="noreferrer">Faculty Retention</a>
+                    </div>
+                </article>
+                <article class="project-card glass-card">
+                    <p class="card-kicker">Interactive App</p>
+                    <h3>Breakout</h3>
+                    <p>A browser-based recreation of the arcade classic with gameplay logic and polished interaction design.</p>
+                    <a href="projects/breakout/index.html">Play Breakout</a>
+                </article>
+                <article class="project-card glass-card">
+                    <p class="card-kicker">Interactive App</p>
+                    <h3>Wordle</h3>
+                    <p>A recreation of the popular word game that showcases front-end logic, UX thinking, and implementation detail.</p>
+                    <a href="projects/wordle/index.html">Play Wordle</a>
+                </article>
+                <article class="project-card glass-card">
+                    <p class="card-kicker">Core CS</p>
+                    <h3>Dijkstra's Shortest Path Algorithm</h3>
+                    <p>A Python implementation of shortest path logic with clear real-world relevance for routing and network optimization.</p>
+                    <a href="projects/dijkstra.html">View Project</a>
+                </article>
+            </div>
+        </section>
+
+        <section id="reports" class="section reveal">
+            <div class="section-heading">
+                <p class="eyebrow">Research & Analysis</p>
+                <h2>Technical writing, presentations, and deeper analytical work</h2>
+            </div>
+            <div class="card-grid">
+                <article class="project-card glass-card">
+                    <h3>Graduate Research</h3>
+                    <p>Research submitted to SIGCITE, including supporting analysis performed in R during graduate study.</p>
+                    <a href="pdfs/SIGCITE25_Pedalogical_Submitted.pdf" target="_blank" rel="noreferrer">View Research Paper</a>
+                </article>
+                <article class="project-card glass-card">
+                    <h3>Kickstarter Success Factors Analysis</h3>
+                    <p>A data science report exploring campaign outcomes, success patterns, and regression-backed drivers of funding results.</p>
+                    <a href="Reports/Data501/index.html">View Report</a>
+                </article>
+                <article class="project-card glass-card">
+                    <h3>Structural Dynamics Presentation</h3>
+                    <p>A presentation on the structural dynamics of Camp Randall Stadium at the University of Wisconsin.</p>
+                    <div class="card-links">
+                        <a href="pdfs/CE534.pdf" target="_blank" rel="noreferrer">Slides</a>
+                        <a href="https://youtu.be/zv-hGKXY3yA" target="_blank" rel="noreferrer">Video</a>
+                    </div>
+                </article>
+                <article class="project-card glass-card">
+                    <h3>Sub-Nyquist Sampling Paper</h3>
+                    <p>A research paper on sub-Nyquist sampling with implementation-driven findings and engineering interpretation.</p>
+                    <a href="pdfs/ECE_564_Paper.pdf" target="_blank" rel="noreferrer">View Paper</a>
+                </article>
+                <article class="project-card glass-card">
+                    <h3>PageRank Research Paper</h3>
+                    <p>An exploration of the linear algebra behind PageRank and the mathematical structure that powers it.</p>
+                    <a href="pdfs/ECE_580_Final_Project.pdf" target="_blank" rel="noreferrer">View Paper</a>
+                </article>
+                <article class="project-card glass-card">
+                    <h3>Digital Signal Processing Projects</h3>
+                    <p>Graduate-level DSP work focused on implementing a Quadrature Phase-Shift Keying communication system.</p>
+                    <div class="card-links">
+                        <a href="pdfs/ECE_564_Project_1_.pdf" target="_blank" rel="noreferrer">Transmitter</a>
+                        <a href="pdfs/ECE_564_Project_2.pdf" target="_blank" rel="noreferrer">Receiver</a>
+                        <a href="pdfs/ECE_564_Project_3-1.pdf" target="_blank" rel="noreferrer">Filtering</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="section reveal">
+            <div class="accordion-grid">
+                <details class="accordion glass-card">
+                    <summary>Applied Mathematics Projects</summary>
+                    <div class="accordion-content">
+                        <div class="stack-list">
+                            <article>
+                                <h3>Image Transformation Project</h3>
+                                <p>Transforming images with linear algebra and Python.</p>
+                                <a href="math/image_transformation/index.html">View Project</a>
+                            </article>
+                            <article>
+                                <h3>Image Compression using SVD</h3>
+                                <p>Compressing image files with singular value decomposition while preserving quality.</p>
+                                <a href="math/SVD/index.html">View Project</a>
+                            </article>
+                            <article>
+                                <h3>Predictive Text Generator</h3>
+                                <p>Using transition matrices to predict likely word sequences from source text.</p>
+                                <a href="math/predictive/index.html">View Project</a>
+                            </article>
+                            <article>
+                                <h3>Cubic Spline</h3>
+                                <p>A program that computes a cubic spline through four points in a plane.</p>
+                                <a href="math/cubic/index.html">View Project</a>
+                            </article>
+                            <article>
+                                <h3>Error Correcting Code</h3>
+                                <p>A project explaining the mathematics behind how scratched discs can still be read correctly.</p>
+                                <a href="math/hamming/index.html">View Project</a>
+                            </article>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="accordion glass-card">
+                    <summary>Foundational Programming Work</summary>
+                    <div class="accordion-content">
+                        <div class="stack-list">
+                            <article>
+                                <h3>Data Structures Implementations</h3>
+                                <p>Core structures including arrays, linked lists, trees, graphs, stacks, queues, and hash tables.</p>
+                                <a href="datastructures/Array.html">Start Browsing</a>
+                            </article>
+                            <article>
+                                <h3>Game of Life</h3>
+                                <p>A Conway's Game of Life implementation built on custom array data structures.</p>
+                                <a href="supportprojects/gameoflife.html">View Project</a>
+                            </article>
+                            <article>
+                                <h3>Lyrics Compressor</h3>
+                                <p>A Python project that compresses repeated words by mapping terms to their positions.</p>
+                                <a href="supportprojects/lyricscompressor.html">View Project</a>
+                            </article>
+                            <article>
+                                <h3>Evolution of Dance</h3>
+                                <p>A linked-list based simulation project centered on randomized dance moves.</p>
+                                <a href="supportprojects/evolutionofdance.html">View Project</a>
+                            </article>
+                            <article>
+                                <h3>Data Structures Final Exam Project</h3>
+                                <p>A timed catalog music service implementation completed in just over two hours.</p>
+                                <a href="supportprojects/finalexam.html">View Project</a>
+                            </article>
+                        </div>
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <section id="education" class="section reveal">
+            <div class="section-heading">
+                <p class="eyebrow">Education</p>
+                <h2>An interdisciplinary foundation with strong technical depth</h2>
+            </div>
+            <div class="education-layout">
+                <div class="education-stack">
+                    <article class="glass-card education-card">
+                        <h3>Oregon State University</h3>
+                        <p class="education-meta">Sept 2025 - June 2026</p>
+                        <p><strong>Degree:</strong> MEng Mechanical Engineering - Dynamics and Controls</p>
+                    </article>
+                    <article class="glass-card education-card">
+                        <h3>Willamette University</h3>
+                        <p class="education-meta">Aug 2023 - Aug 2025</p>
+                        <p><strong>Degrees:</strong> M.S. Computer Science | B.S. Computer Science | B.S. Data Science | Minor in Applied Mathematics</p>
+                        <p><strong>Activities:</strong> Mathematics Tutor</p>
+                    </article>
+                </div>
+                <div class="education-photo glass-card">
+                    <img src="images/prom.jpg" alt="Graduation photo of Kayle Megginson">
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section reveal">
+            <div class="section-heading">
+                <p class="eyebrow">Contact</p>
+                <h2>Interested in working together or talking through an idea?</h2>
+            </div>
+            <div class="contact-layout">
+                <div class="contact-panel glass-card">
+                    <p>
+                        I enjoy collaborating on software, analytics, and engineering-focused work. If you have a project,
+                        opportunity, or question, send a message and I will get back to you as soon as I can.
+                    </p>
+                    <div class="contact-links">
+                        <a href="Kayle_Megginson_Resume.pdf" download="Kayle_Megginson_Resume.pdf">Download Resume</a>
+                        <a href="Kayle_Megginson_Cover_Letter.pdf" download="Kayle_Megginson_Cover_Letter.pdf">Download Cover Letter</a>
+                        <a href="https://www.linkedin.com/in/kayle-megginson-9868872b5/" target="_blank" rel="noreferrer">Connect on LinkedIn</a>
+                    </div>
+                </div>
+
+                <form id="contact-form" class="contact-form glass-card" action="https://formspree.io/f/myzedwrd" method="POST">
+                    <label>
+                        <span>Name</span>
+                        <input type="text" id="name" name="name" placeholder="Your name" required>
+                    </label>
+                    <label>
+                        <span>Email</span>
+                        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                    </label>
+                    <label>
+                        <span>Message</span>
+                        <textarea id="message" name="message" rows="6" placeholder="Tell me a little about what you're looking for." required></textarea>
+                    </label>
+                    <div class="form-footer">
+                        <p id="form-status" class="form-status" aria-live="polite"></p>
+                        <button class="btn btn-primary" type="submit">Send Message</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>Built and designed by Kayle Megginson. <span id="year"></span></p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
-
 </html>

@@ -1,0 +1,422 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap");
+
+:root {
+  --sub-bg: #06121f;
+  --sub-bg-alt: #0b1829;
+  --sub-panel: rgba(10, 22, 38, 0.72);
+  --sub-line: rgba(149, 195, 255, 0.18);
+  --sub-text: #f4f8ff;
+  --sub-muted: #9eb4cb;
+  --sub-primary: #72e0ff;
+  --sub-accent: #8ef7b5;
+  --sub-shadow: 0 24px 70px rgba(0, 0, 0, 0.38);
+  --sub-radius: 26px;
+  --sub-width: min(1120px, calc(100vw - 2rem));
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body.portfolio-subpage {
+  margin: 0;
+  color: var(--sub-text);
+  font-family: "Outfit", sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(40, 159, 255, 0.12), transparent 35%),
+    radial-gradient(circle at 80% 18%, rgba(106, 255, 205, 0.1), transparent 30%),
+    linear-gradient(180deg, #050d18 0%, #071423 46%, #040a14 100%);
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+body.portfolio-subpage *,
+body.portfolio-subpage *::before,
+body.portfolio-subpage *::after {
+  box-sizing: border-box;
+}
+
+body.portfolio-subpage a {
+  color: var(--sub-primary);
+}
+
+.subpage-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.subpage-aurora {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(60px);
+  opacity: 0.6;
+  animation: subpage-drift 18s ease-in-out infinite;
+}
+
+.subpage-aurora.one {
+  width: 26rem;
+  height: 26rem;
+  top: 3rem;
+  right: -5rem;
+  background: rgba(59, 188, 255, 0.2);
+}
+
+.subpage-aurora.two {
+  width: 21rem;
+  height: 21rem;
+  bottom: 8rem;
+  left: -4rem;
+  background: rgba(95, 255, 181, 0.14);
+  animation-delay: -8s;
+}
+
+.subpage-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.75), transparent 92%);
+}
+
+.subpage-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  width: var(--sub-width);
+  margin: 1rem auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.95rem 1.15rem;
+  border: 1px solid var(--sub-line);
+  border-radius: 999px;
+  background: rgba(6, 17, 29, 0.72);
+  backdrop-filter: blur(18px);
+  box-shadow: var(--sub-shadow);
+}
+
+.subpage-brand,
+.subpage-link {
+  text-decoration: none;
+}
+
+.subpage-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  color: var(--sub-text);
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+}
+
+.subpage-mark {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(114, 224, 255, 0.3), rgba(142, 247, 181, 0.16));
+  border: 1px solid rgba(142, 247, 181, 0.3);
+}
+
+.subpage-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.subpage-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.78rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(114, 224, 255, 0.22);
+  background: rgba(114, 224, 255, 0.08);
+  color: var(--sub-text);
+  font-weight: 600;
+  transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.subpage-link:hover {
+  transform: translateY(-1px);
+  background: rgba(114, 224, 255, 0.16);
+}
+
+.subpage-link-muted {
+  color: var(--sub-muted);
+  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.subpage-shell {
+  width: var(--sub-width);
+  margin: 0 auto;
+  padding: 1.8rem 0 4rem;
+}
+
+.subpage-hero,
+.subpage-content,
+.subpage-app-shell {
+  position: relative;
+  border: 1px solid var(--sub-line);
+  border-radius: var(--sub-radius);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015)),
+    var(--sub-panel);
+  box-shadow: var(--sub-shadow);
+  overflow: hidden;
+}
+
+.subpage-hero {
+  padding: 1.7rem;
+  margin-bottom: 1rem;
+}
+
+.subpage-kicker {
+  margin: 0 0 0.75rem;
+  color: var(--sub-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.subpage-title {
+  margin: 0;
+  color: #fff;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(2rem, 4vw, 3.35rem);
+  line-height: 1.08;
+}
+
+.subpage-description {
+  max-width: 64ch;
+  margin: 0.9rem 0 0;
+  color: var(--sub-muted);
+  font-size: 1.02rem;
+}
+
+.subpage-content {
+  padding: clamp(1rem, 2vw, 1.4rem);
+}
+
+body.portfolio-notebook main,
+body.portfolio-notebook .jp-Notebook,
+body.portfolio-notebook #notebook-container {
+  max-width: 100%;
+}
+
+body.portfolio-notebook main {
+  background: transparent !important;
+}
+
+body.portfolio-notebook .jp-Cell,
+body.portfolio-notebook .cell,
+body.portfolio-notebook .text_cell,
+body.portfolio-notebook .code_cell {
+  margin: 0 0 1rem !important;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  background: rgba(7, 17, 29, 0.68);
+  overflow: hidden;
+}
+
+body.portfolio-notebook .jp-InputArea,
+body.portfolio-notebook .jp-RenderedHTMLCommon,
+body.portfolio-notebook .jp-RenderedMarkdown,
+body.portfolio-notebook .jp-RenderedText,
+body.portfolio-notebook .jp-OutputArea,
+body.portfolio-notebook .text_cell_render {
+  color: var(--sub-text) !important;
+  background: transparent !important;
+}
+
+body.portfolio-notebook .jp-InputPrompt,
+body.portfolio-notebook .jp-OutputPrompt,
+body.portfolio-notebook .prompt,
+body.portfolio-notebook .jp-Collapser,
+body.portfolio-notebook .input_prompt,
+body.portfolio-notebook .output_prompt {
+  display: none !important;
+}
+
+body.portfolio-notebook h1,
+body.portfolio-notebook h2,
+body.portfolio-notebook h3,
+body.portfolio-notebook h4 {
+  color: #fff !important;
+  font-family: "Space Grotesk", sans-serif;
+  line-height: 1.14;
+}
+
+body.portfolio-notebook p,
+body.portfolio-notebook li {
+  color: var(--sub-muted);
+}
+
+body.portfolio-notebook hr {
+  border: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+body.portfolio-notebook pre,
+body.portfolio-notebook code,
+body.portfolio-notebook .highlight {
+  border-radius: 18px !important;
+}
+
+body.portfolio-notebook pre {
+  overflow-x: auto;
+  padding: 1rem !important;
+  background: rgba(4, 11, 20, 0.88) !important;
+  color: #d9e8ff !important;
+}
+
+body.portfolio-notebook code {
+  font-family: Consolas, "SFMono-Regular", monospace;
+}
+
+body.portfolio-notebook img {
+  border-radius: 18px;
+  max-width: 100%;
+  height: auto;
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.26);
+}
+
+body.portfolio-notebook table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+body.portfolio-notebook th,
+body.portfolio-notebook td {
+  padding: 0.8rem 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: left;
+}
+
+body.portfolio-notebook th {
+  color: #fff;
+  background: rgba(114, 224, 255, 0.08);
+}
+
+body.portfolio-app .subpage-shell {
+  display: grid;
+  gap: 1rem;
+}
+
+body.portfolio-app .subpage-app-shell {
+  padding: 1.25rem;
+}
+
+body.portfolio-app h1 {
+  margin: 0 0 1rem;
+  color: #fff;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+body.portfolio-app #backToMain {
+  display: none !important;
+}
+
+body.portfolio-simple .subpage-content {
+  padding: 1.6rem;
+}
+
+body.portfolio-simple h1,
+body.portfolio-simple h2 {
+  color: #fff;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+body.portfolio-simple textarea,
+body.portfolio-simple input,
+body.portfolio-simple button {
+  font: inherit;
+}
+
+body.portfolio-simple textarea,
+body.portfolio-simple input {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(5, 13, 23, 0.78);
+  color: var(--sub-text);
+}
+
+body.portfolio-simple button {
+  margin-top: 0.9rem;
+  padding: 0.9rem 1.15rem;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--sub-accent), var(--sub-primary));
+  color: #03101a;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+body.portfolio-simple pre {
+  padding: 1rem;
+  border-radius: 18px;
+  background: rgba(4, 11, 20, 0.88);
+  color: #d9e8ff;
+  overflow-x: auto;
+}
+
+body.portfolio-subpage .legacy-back-button {
+  display: none !important;
+}
+
+@keyframes subpage-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-24px, 18px, 0) scale(1.06);
+  }
+}
+
+@media (max-width: 760px) {
+  :root {
+    --sub-width: min(100vw - 1rem, 100%);
+  }
+
+  .subpage-header {
+    border-radius: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .subpage-nav {
+    width: 100%;
+  }
+
+  .subpage-link {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
