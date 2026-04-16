@@ -305,10 +305,17 @@ p {
   gap: 1.35rem;
 }
 
+.hero-copy h1 {
+  font-size: clamp(2.45rem, 4.8vw, 4.6rem);
+  max-width: 10.5ch;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+}
+
 .hero-lead {
-  max-width: 62ch;
+  max-width: 58ch;
   color: var(--muted);
-  font-size: 1.08rem;
+  font-size: 1.02rem;
 }
 
 .hero-rotator {
@@ -453,6 +460,14 @@ p {
 .hero-spotlight-card {
   width: min(100%, 390px);
   padding: 1.25rem;
+}
+
+.hero-spotlight-card h2 {
+  font-size: clamp(1.45rem, 2.3vw, 2.1rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+  text-wrap: balance;
 }
 
 .spotlight-label,
@@ -801,6 +816,10 @@ p {
     justify-items: start;
   }
 
+  .hero-copy h1 {
+    max-width: 11.5ch;
+  }
+
   .hero-metrics,
   .card-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -847,17 +866,42 @@ p {
 
   .hero {
     min-height: auto;
-    padding-top: 0.5rem;
+    gap: 1.4rem;
+    padding-top: 0.35rem;
+  }
+
+  .hero-copy {
+    gap: 1.05rem;
   }
 
   h1 {
     max-width: 100%;
   }
 
+  .hero-copy h1 {
+    font-size: clamp(2rem, 10vw, 3rem);
+    max-width: 100%;
+    line-height: 1.06;
+  }
+
+  .hero-lead {
+    font-size: 0.98rem;
+  }
+
+  .hero-rotator {
+    width: 100%;
+    justify-content: center;
+    padding: 0.75rem 0.9rem;
+  }
+
   .hero-actions,
   .form-footer {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .btn {
+    width: 100%;
   }
 
   .hero-metrics,
@@ -868,6 +912,14 @@ p {
 
   .portrait-shell {
     width: 100%;
+  }
+
+  .hero-spotlight-card {
+    width: 100%;
+  }
+
+  .hero-spotlight-card h2 {
+    font-size: clamp(1.3rem, 7vw, 1.8rem);
   }
 }
 

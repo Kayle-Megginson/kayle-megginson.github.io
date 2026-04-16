@@ -51,6 +51,101 @@
     document.body.prepend(header);
   }
 
+  function normalizeText(value) {
+    return (value || "").replace(/\s+/g, " ").trim();
+  }
+
+  function appendOverview(hero, body) {
+    var process = normalizeText(body.dataset.pageProcess);
+    var results = normalizeText(body.dataset.pageResults);
+    if (!process && !results) return;
+
+    var overview = document.createElement("div");
+    overview.className = "subpage-overview";
+
+    if (process) {
+      var processCard = document.createElement("article");
+      processCard.className = "subpage-overview-card";
+      processCard.innerHTML =
+        "<h3>Process</h3>" +
+        "<p>" + process + "</p>";
+      overview.appendChild(processCard);
+    }
+
+    if (results) {
+      var resultsCard = document.createElement("article");
+      resultsCard.className = "subpage-overview-card";
+      resultsCard.innerHTML =
+        "<h3>Results</h3>" +
+        "<p>" + results + "</p>";
+      overview.appendChild(resultsCard);
+    }
+
+    hero.appendChild(overview);
+  }
+
+  function hideCell(cell) {
+    cell.style.display = "none";
+    cell.setAttribute("aria-hidden", "true");
+  }
+
+  function applyCaseStudyCleanup() {
+    var body = document.body;
+    if (!body || body.dataset.pageCleanup !== "case-study") return;
+
+    var hidePatterns = [
+      /to edit a text cell/i,
+      /some resources for using python to study matrices/i,
+      /a couple quick notes/i,
+      /some useful matrix commands/i,
+      /your work for questions/i,
+      /enter your answer to question/i,
+      /add your code for question/i,
+      /instructions/i,
+      /part i[,:\s-].*due/i,
+      /part ii[,:\s-].*due/i
+    ];
+
+    var renameRules = [
+      { pattern: /^answer for part 1$/i, replacement: "Process" },
+      { pattern: /^answer for part 2$/i, replacement: "Results" },
+      { pattern: /^part i[,:\s-]*homography$/i, replacement: "Homography Workflow" },
+      { pattern: /^part ii[,:\s-]*homogenous coordinates$/i, replacement: "Coordinate Mapping" },
+      { pattern: /^part i[,:\s-].*$/i, replacement: "Process" },
+      { pattern: /^part ii[,:\s-].*$/i, replacement: "Results" }
+    ];
+
+    Array.from(document.querySelectorAll(".jp-Cell, .cell")).forEach(function (cell) {
+      var text = normalizeText(cell.textContent);
+      var heading = cell.querySelector("h1, h2, h3, h4");
+      var headingText = heading ? normalizeText(heading.textContent.replace(/¶/g, "")) : "";
+
+      if (/jupyter\s+nbconvert/i.test(text) || /\[NbConvertApp\]/i.test(text)) {
+        hideCell(cell);
+        return;
+      }
+
+      var shouldHide = hidePatterns.some(function (pattern) {
+        return pattern.test(headingText) || pattern.test(text);
+      });
+
+      if (shouldHide) {
+        hideCell(cell);
+        return;
+      }
+
+      if (heading) {
+        renameRules.some(function (rule) {
+          if (rule.pattern.test(headingText)) {
+            heading.textContent = rule.replacement;
+            return true;
+          }
+          return false;
+        });
+      }
+    });
+  }
+
   function buildNotebookLayout(title, description) {
     var sourceMain = document.querySelector("main");
     if (!sourceMain) return;
@@ -65,6 +160,7 @@
         '<p class="subpage-kicker">Project Detail</p>' +
         '<h1 class="subpage-title">' + title + "</h1>" +
         '<p class="subpage-description">' + description + "</p>";
+      appendOverview(hero, document.body);
 
       var content = document.createElement("section");
       content.className = "subpage-content";
@@ -84,6 +180,8 @@
         cell.style.display = "none";
       }
     });
+
+    applyCaseStudyCleanup();
   }
 
   function buildAppLayout(title, description) {
