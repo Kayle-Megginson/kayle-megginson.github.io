@@ -24329,6 +24329,7 @@ let typedWord = "";
 let guessHistory = Array.from({ length: N_ROWS }, () => Array(N_COLS).fill(UNKNOWN_COLOR));
 let guessLetters = Array.from({ length: N_ROWS }, () => Array(N_COLS).fill(""));
 let keyColors = {}; // Track keyboard colors
+let gameFinished = false;
 
 // Debugging: Show selected word
 console.log("Selected Word:", selectedWord);
@@ -24449,6 +24450,10 @@ function showGameOverMessage(word) {
 
 // Handle Key Press
 function handleKeyPress(key) {
+      if (gameFinished) {
+            return;
+      }
+
       if (key === "ENTER") {
             if (typedWord.length === 5) {
                   if (ENGLISH_WORDS.includes(typedWord)) {
@@ -24459,12 +24464,14 @@ function handleKeyPress(key) {
                         drawKeyboard();
 
                         if (typedWord === selectedWord) {
+                              gameFinished = true;
                               setTimeout(() => alert("Congratulations! You guessed the word!"), 200);
                         } else {
                               typedWord = "";
                               currentRow++;
                               currentCol = 0;
                               if (currentRow >= N_ROWS) {
+                                    gameFinished = true;
                                     showGameOverMessage(selectedWord);
                               }
                         }
@@ -24496,6 +24503,34 @@ function handleKeyPress(key) {
       }
 }
 
+function handlePhysicalKeyboard(event) {
+      if (gameFinished) {
+            return;
+      }
+
+      const activeElement = document.activeElement;
+      if (activeElement && ["INPUT", "TEXTAREA"].includes(activeElement.tagName)) {
+            return;
+      }
+
+      if (/^[a-zA-Z]$/.test(event.key)) {
+            event.preventDefault();
+            handleKeyPress(event.key.toUpperCase());
+            return;
+      }
+
+      if (event.key === "Enter") {
+            event.preventDefault();
+            handleKeyPress("ENTER");
+            return;
+      }
+
+      if (event.key === "Backspace" || event.key === "Delete") {
+            event.preventDefault();
+            handleKeyPress("DELETE");
+      }
+}
+
 
 
 
@@ -24503,3 +24538,4 @@ function handleKeyPress(key) {
 // Initialize
 drawGrid();
 drawKeyboard();
+document.addEventListener("keydown", handlePhysicalKeyboard);

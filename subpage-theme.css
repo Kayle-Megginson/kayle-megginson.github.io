@@ -16,9 +16,11 @@
 
 html {
   scroll-behavior: smooth;
+  background: #050d18;
 }
 
-body.portfolio-subpage {
+body.portfolio-subpage,
+body[data-page-type] {
   margin: 0;
   color: var(--sub-text);
   font-family: "Outfit", sans-serif;
@@ -32,11 +34,15 @@ body.portfolio-subpage {
 
 body.portfolio-subpage *,
 body.portfolio-subpage *::before,
-body.portfolio-subpage *::after {
+body.portfolio-subpage *::after,
+body[data-page-type] *,
+body[data-page-type] *::before,
+body[data-page-type] *::after {
   box-sizing: border-box;
 }
 
-body.portfolio-subpage a {
+body.portfolio-subpage a,
+body[data-page-type] a {
   color: var(--sub-primary);
 }
 
@@ -210,18 +216,26 @@ body.portfolio-subpage a {
 
 body.portfolio-notebook main,
 body.portfolio-notebook .jp-Notebook,
-body.portfolio-notebook #notebook-container {
+body.portfolio-notebook #notebook-container,
+body[data-page-type="notebook"] main,
+body[data-page-type="notebook"] .jp-Notebook,
+body[data-page-type="notebook"] #notebook-container {
   max-width: 100%;
 }
 
-body.portfolio-notebook main {
+body.portfolio-notebook main,
+body[data-page-type="notebook"] main {
   background: transparent !important;
 }
 
 body.portfolio-notebook .jp-Cell,
 body.portfolio-notebook .cell,
 body.portfolio-notebook .text_cell,
-body.portfolio-notebook .code_cell {
+body.portfolio-notebook .code_cell,
+body[data-page-type="notebook"] .jp-Cell,
+body[data-page-type="notebook"] .cell,
+body[data-page-type="notebook"] .text_cell,
+body[data-page-type="notebook"] .code_cell {
   margin: 0 0 1rem !important;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 20px;
@@ -234,7 +248,13 @@ body.portfolio-notebook .jp-RenderedHTMLCommon,
 body.portfolio-notebook .jp-RenderedMarkdown,
 body.portfolio-notebook .jp-RenderedText,
 body.portfolio-notebook .jp-OutputArea,
-body.portfolio-notebook .text_cell_render {
+body.portfolio-notebook .text_cell_render,
+body[data-page-type="notebook"] .jp-InputArea,
+body[data-page-type="notebook"] .jp-RenderedHTMLCommon,
+body[data-page-type="notebook"] .jp-RenderedMarkdown,
+body[data-page-type="notebook"] .jp-RenderedText,
+body[data-page-type="notebook"] .jp-OutputArea,
+body[data-page-type="notebook"] .text_cell_render {
   color: var(--sub-text) !important;
   background: transparent !important;
 }
@@ -244,7 +264,13 @@ body.portfolio-notebook .jp-OutputPrompt,
 body.portfolio-notebook .prompt,
 body.portfolio-notebook .jp-Collapser,
 body.portfolio-notebook .input_prompt,
-body.portfolio-notebook .output_prompt {
+body.portfolio-notebook .output_prompt,
+body[data-page-type="notebook"] .jp-InputPrompt,
+body[data-page-type="notebook"] .jp-OutputPrompt,
+body[data-page-type="notebook"] .prompt,
+body[data-page-type="notebook"] .jp-Collapser,
+body[data-page-type="notebook"] .input_prompt,
+body[data-page-type="notebook"] .output_prompt {
   display: none !important;
 }
 
@@ -257,41 +283,60 @@ body.portfolio-notebook h4 {
   line-height: 1.14;
 }
 
+body[data-page-type="notebook"] h1,
+body[data-page-type="notebook"] h2,
+body[data-page-type="notebook"] h3,
+body[data-page-type="notebook"] h4 {
+  color: #fff !important;
+  font-family: "Space Grotesk", sans-serif;
+  line-height: 1.14;
+}
+
 body.portfolio-notebook p,
-body.portfolio-notebook li {
+body.portfolio-notebook li,
+body[data-page-type="notebook"] p,
+body[data-page-type="notebook"] li {
   color: var(--sub-muted);
 }
 
-body.portfolio-notebook hr {
+body.portfolio-notebook hr,
+body[data-page-type="notebook"] hr {
   border: 0;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 body.portfolio-notebook pre,
 body.portfolio-notebook code,
-body.portfolio-notebook .highlight {
+body.portfolio-notebook .highlight,
+body[data-page-type="notebook"] pre,
+body[data-page-type="notebook"] code,
+body[data-page-type="notebook"] .highlight {
   border-radius: 18px !important;
 }
 
-body.portfolio-notebook pre {
+body.portfolio-notebook pre,
+body[data-page-type="notebook"] pre {
   overflow-x: auto;
   padding: 1rem !important;
   background: rgba(4, 11, 20, 0.88) !important;
   color: #d9e8ff !important;
 }
 
-body.portfolio-notebook code {
+body.portfolio-notebook code,
+body[data-page-type="notebook"] code {
   font-family: Consolas, "SFMono-Regular", monospace;
 }
 
-body.portfolio-notebook img {
+body.portfolio-notebook img,
+body[data-page-type="notebook"] img {
   border-radius: 18px;
   max-width: 100%;
   height: auto;
   box-shadow: 0 18px 36px rgba(0, 0, 0, 0.26);
 }
 
-body.portfolio-notebook table {
+body.portfolio-notebook table,
+body[data-page-type="notebook"] table {
   width: 100%;
   border-collapse: collapse;
   overflow: hidden;
@@ -299,54 +344,69 @@ body.portfolio-notebook table {
 }
 
 body.portfolio-notebook th,
-body.portfolio-notebook td {
+body.portfolio-notebook td,
+body[data-page-type="notebook"] th,
+body[data-page-type="notebook"] td {
   padding: 0.8rem 0.9rem;
   border: 1px solid rgba(255, 255, 255, 0.08);
   text-align: left;
 }
 
-body.portfolio-notebook th {
+body.portfolio-notebook th,
+body[data-page-type="notebook"] th {
   color: #fff;
   background: rgba(114, 224, 255, 0.08);
 }
 
-body.portfolio-app .subpage-shell {
+body.portfolio-app .subpage-shell,
+body[data-page-type="app"] .subpage-shell {
   display: grid;
   gap: 1rem;
 }
 
-body.portfolio-app .subpage-app-shell {
+body.portfolio-app .subpage-app-shell,
+body[data-page-type="app"] .subpage-app-shell {
   padding: 1.25rem;
 }
 
-body.portfolio-app h1 {
+body.portfolio-app h1,
+body[data-page-type="app"] h1 {
   margin: 0 0 1rem;
   color: #fff;
   font-family: "Space Grotesk", sans-serif;
 }
 
-body.portfolio-app #backToMain {
+body.portfolio-app #backToMain,
+body[data-page-type="app"] #backToMain {
   display: none !important;
 }
 
-body.portfolio-simple .subpage-content {
+body.portfolio-simple .subpage-content,
+body[data-page-type="simple"] .subpage-content {
   padding: 1.6rem;
 }
 
 body.portfolio-simple h1,
-body.portfolio-simple h2 {
+body.portfolio-simple h2,
+body[data-page-type="simple"] h1,
+body[data-page-type="simple"] h2 {
   color: #fff;
   font-family: "Space Grotesk", sans-serif;
 }
 
 body.portfolio-simple textarea,
 body.portfolio-simple input,
-body.portfolio-simple button {
+body.portfolio-simple button,
+body[data-page-type="simple"] textarea,
+body[data-page-type="simple"] input,
+body[data-page-type="simple"] button {
   font: inherit;
 }
 
 body.portfolio-simple textarea,
-body.portfolio-simple input {
+body.portfolio-simple input,
+body[data-page-type="simple"] textarea,
+body[data-page-type="simple"] input {
   width: 100%;
   padding: 0.9rem 1rem;
   border-radius: 18px;
@@ -355,7 +415,8 @@ body.portfolio-simple input {
   color: var(--sub-text);
 }
 
-body.portfolio-simple button {
+body.portfolio-simple button,
+body[data-page-type="simple"] button {
   margin-top: 0.9rem;
   padding: 0.9rem 1.15rem;
   border: 0;
@@ -366,7 +427,8 @@ body.portfolio-simple button {
   cursor: pointer;
 }
 
-body.portfolio-simple pre {
+body.portfolio-simple pre,
+body[data-page-type="simple"] pre {
   padding: 1rem;
   border-radius: 18px;
   background: rgba(4, 11, 20, 0.88);
@@ -374,7 +436,8 @@ body.portfolio-simple pre {
   overflow-x: auto;
 }
 
-body.portfolio-subpage .legacy-back-button {
+body.portfolio-subpage .legacy-back-button,
+body[data-page-type] .legacy-back-button {
   display: none !important;
 }
 
