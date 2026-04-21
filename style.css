@@ -546,6 +546,201 @@ p {
   object-fit: contain;
 }
 
+.journey-shell {
+  display: grid;
+  gap: 1.5rem;
+  padding: 1.8rem;
+  overflow: hidden;
+}
+
+.journey-lead {
+  max-width: 64ch;
+  color: var(--muted);
+  font-size: 1.02rem;
+}
+
+.journey-timeline {
+  position: relative;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(220px, 1fr);
+  gap: 0;
+  align-items: center;
+  overflow-x: auto;
+  padding: 1.6rem 0.25rem 1rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(114, 224, 255, 0.34) transparent;
+}
+
+.journey-timeline::before {
+  content: "";
+  position: absolute;
+  left: 0.25rem;
+  right: 0.25rem;
+  top: 50%;
+  height: 2px;
+  transform: translateY(-50%);
+  background: linear-gradient(90deg, rgba(114, 224, 255, 0.16), rgba(142, 247, 181, 0.3), rgba(114, 224, 255, 0.16));
+  pointer-events: none;
+}
+
+.journey-timeline::-webkit-scrollbar {
+  height: 8px;
+}
+
+.journey-timeline::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(114, 224, 255, 0.24);
+}
+
+.journey-event {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-rows: minmax(124px, auto) 42px 76px 42px minmax(124px, auto);
+  min-width: 220px;
+  padding: 0 0.35rem;
+}
+
+.journey-note {
+  position: relative;
+  padding: 1rem 1.05rem;
+  border-radius: 22px;
+  border: 1px solid rgba(114, 224, 255, 0.12);
+  background:
+    radial-gradient(circle at top right, rgba(114, 224, 255, 0.14), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015)),
+    rgba(5, 13, 23, 0.72);
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.22);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.journey-note:hover {
+  transform: translateY(-3px);
+  border-color: rgba(114, 224, 255, 0.24);
+  box-shadow: 0 22px 40px rgba(0, 0, 0, 0.28);
+}
+
+.journey-event:nth-child(odd) .journey-note {
+  grid-row: 1;
+  align-self: end;
+}
+
+.journey-event:nth-child(even) .journey-note {
+  grid-row: 5;
+  align-self: start;
+}
+
+.journey-stem {
+  position: relative;
+  justify-self: center;
+  width: 2px;
+  background: linear-gradient(180deg, rgba(142, 247, 181, 0.5), rgba(114, 224, 255, 0.34));
+}
+
+.journey-stem::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  border: 3px solid rgba(6, 18, 31, 0.95);
+  background: linear-gradient(135deg, rgba(142, 247, 181, 0.95), rgba(114, 224, 255, 0.95));
+  box-shadow: 0 0 0 7px rgba(114, 224, 255, 0.08);
+}
+
+.journey-event:nth-child(odd) .journey-stem {
+  grid-row: 2;
+  height: 42px;
+  align-self: end;
+}
+
+.journey-event:nth-child(odd) .journey-stem::after {
+  bottom: 100%;
+  margin-bottom: 6px;
+}
+
+.journey-event:nth-child(even) .journey-stem {
+  grid-row: 4;
+  height: 42px;
+  align-self: start;
+}
+
+.journey-event:nth-child(even) .journey-stem::after {
+  top: 100%;
+  margin-top: 6px;
+}
+
+.journey-step {
+  position: relative;
+  grid-row: 3;
+  display: grid;
+  place-items: center;
+  min-height: 76px;
+  padding: 1rem 2.2rem 1rem 1.7rem;
+  color: var(--heading);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-align: center;
+  text-wrap: balance;
+  background: linear-gradient(135deg, rgba(114, 224, 255, 0.18), rgba(142, 247, 181, 0.18));
+  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.26));
+  clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 50%, calc(100% - 30px) 100%, 0 100%, 18px 50%);
+}
+
+.journey-step::before {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  background:
+    radial-gradient(circle at top left, rgba(142, 247, 181, 0.18), transparent 38%),
+    linear-gradient(180deg, rgba(11, 27, 43, 0.98), rgba(7, 18, 30, 0.95));
+  clip-path: inherit;
+  z-index: -1;
+}
+
+.journey-step::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(114, 224, 255, 0.14), rgba(142, 247, 181, 0.1));
+  clip-path: inherit;
+  z-index: -2;
+}
+
+.journey-step span {
+  display: inline-block;
+  max-width: 14ch;
+}
+
+.journey-step-future {
+  background: linear-gradient(135deg, rgba(255, 204, 92, 0.38), rgba(114, 224, 255, 0.2));
+}
+
+.journey-date {
+  margin-bottom: 0.55rem;
+  color: var(--primary);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.journey-note h3 {
+  margin-bottom: 0.6rem;
+  font-size: 1.04rem;
+  line-height: 1.15;
+}
+
+.journey-note p:last-child {
+  color: var(--muted);
+  font-size: 0.93rem;
+}
+
 .timeline {
   display: grid;
   gap: 1rem;
@@ -920,6 +1115,53 @@ p {
 
   .hero-spotlight-card h2 {
     font-size: clamp(1.3rem, 7vw, 1.8rem);
+  }
+
+  .journey-shell {
+    padding: 1.2rem;
+  }
+
+  .journey-timeline::before {
+    top: auto;
+    bottom: 0.85rem;
+    left: 0.25rem;
+    right: 0.25rem;
+    transform: none;
+  }
+
+  .journey-event {
+    grid-auto-columns: auto;
+    grid-template-rows: auto 28px 68px 1fr;
+    min-width: min(82vw, 270px);
+    gap: 0.65rem;
+  }
+
+  .journey-note,
+  .journey-event:nth-child(odd) .journey-note,
+  .journey-event:nth-child(even) .journey-note {
+    grid-row: 1;
+    align-self: start;
+  }
+
+  .journey-stem,
+  .journey-event:nth-child(odd) .journey-stem,
+  .journey-event:nth-child(even) .journey-stem {
+    grid-row: 2;
+    height: 28px;
+    align-self: center;
+  }
+
+  .journey-event:nth-child(odd) .journey-stem::after,
+  .journey-event:nth-child(even) .journey-stem::after {
+    top: auto;
+    bottom: 100%;
+    margin: 0 0 6px;
+  }
+
+  .journey-step {
+    grid-row: 3;
+    min-height: 68px;
+    font-size: 0.92rem;
   }
 }
 
